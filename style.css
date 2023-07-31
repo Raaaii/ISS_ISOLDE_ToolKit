@@ -1,0 +1,220 @@
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title-box {
+    background-color: #85e085;
+    border: 1px solid #c2c2c2;
+    padding: 10px;
+  }
+  
+  .title-box h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .particle-section {
+    background-color: #f7f7f7;
+    border: 1px solid #c2c2c2;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .dropdown-button {
+    background-color: #85e085;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .particle-field {
+    background-color: #dbf1db;
+    border: 1px solid #c2c2c2;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .particle-field h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333333;
+  }
+  
+  .input-section {
+    margin-top: 10px;
+  }
+  
+  .input-section label {
+    margin-right: 5px;
+  }
+  
+  .input-section input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #c2c2c2;
+  }
+  
+  .start-button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .start-button:hover {
+    background-color: #45a049;
+  }
+  
+
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+  }
+
+
+.particle-result {
+  background-color: #f9f9f9;
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.particle-result h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333333;
+}
+
+.particle-result p {
+  margin: 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+
+
+    /* Styles for the particle section */
+
+    .particle-result {
+      background-color: rgb(142, 236, 104);
+      border: 1px solid black;
+      padding: 10px;
+      margin-top: 10px;
+    
+    }
+
+    .particle-result h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333333;
+    }
+
+    .particle-result p {
+      margin: 0;
+      font-size: 14px;
+      color: #c71a1a;
+    }
+  
+    #masses {
+      display: none;
+    }
+    #v3Container {
+      display: none;
+    }
+
+    
+.masses {
+  background-color: #dbf1db;
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+  margin-top: 20px;
+  display: inline-block; /* Add this line to make it inline with the previous section */
+  vertical-align: top; /* Add this line to align it at the top */
+  margin-left: 20px; /* Add this line to add some space between the sections */
+}
+
+.masses label {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+}
+
+.masses input {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #c2c2c2;
+}
+
+.masses #v3Container {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.masses #v3 {
+  color: #c71a1a;
+}
+
+.masses button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.masses button:hover {
+  background-color: #45a049;
+}

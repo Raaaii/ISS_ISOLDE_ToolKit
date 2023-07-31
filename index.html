@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* Styles for the pop-up window */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 1;
+    }
+
+    .popup {
+      position: fixed;
+      display: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .popup-content {
+      text-align: center;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-box">
+      <h1>ISS ISOLDE Toolkit</h1>
+    </div>
+    <div class="particle-section">
+      <div class="dropdown">
+        <button class="dropdown-button">Choose particles</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="selectParticle('Particle 1')">Particle 1</a>
+          <a href="#" onclick="selectParticle('Particle 2')">Particle 2</a>
+          <a href="#" onclick="selectParticle('Particle 3')">Particle 3</a>
+        </div>
+      </div>
+      <div id="particle-fields">
+      </div>
+      <button class="start-button">Start</button>
+    </div>
+
+    <div class="masses" id="masses">
+      <label for="particle1">
+        <span class="bolded">Mass of Particle 1</span> [\(\frac{\text{MeV}}{c^2}\)]</label>
+      <input type="text" id="particle1" disabled>
+      <br>
+      <label for="particle2">Mass of Particle 2 [\(\frac{\text{MeV}}{c^2}\)]</label>
+      <input type="text" id="particle2" disabled>
+      <br>
+      <label for="particle3">Mass of Particle 3 [\(\frac{\text{MeV}}{c^2}\)]</label>
+      <input type="text" id="particle3" disabled>
+      <br>
+      <label for="E_x">E_x [\(\text{MeV}\)]</label>
+      <input type="number" id="E_x">
+      <br>
+      <label for="T_1">T_1 [\(\text{MeV}\)]</label>
+      <input type="text" id="T_1">
+      <br>
+      <p id="v3Container"><i>V3 = </i><b id="v3"></b></p>
+      <button onclick="calculateV3()">CALCULATE V3</button>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- Pop-up window and overlay elements -->
+  <div id="overlay" class="overlay"></div>
+  <div id="popup" class="popup"></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="retrive_mass.js"></script>
+  <script src="v3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
+</html>

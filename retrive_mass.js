@@ -34,7 +34,7 @@ function retrieveDataAndCalculateMassExcess(particleValues) {
           particleName.textContent = particle;
   
           const massExcessValue = document.createElement("p");
-          massExcessValue.textContent = `Mass Excess: ${massExcessValues[particle]}`;
+          massExcessValue.textContent = `Nuclear Mass: ${massExcessValues[particle]}`;
   
           particleResult.appendChild(particleName);
           particleResult.appendChild(massExcessValue);

@@ -42,9 +42,13 @@ def read_nuclear_mass_table():
     data = {
         'A': A_values,
         'N': N_values,
-        'Mass Excess': mass_excess_values,
         'Z': Z_values,
+        'Mass Excess': mass_excess_values,
         'Nuclear Mass': nuclear_mass
     }
+    
     df = pd.DataFrame(data)
     return df
+
+#df=read_nuclear_mass_table()
+#print(df)

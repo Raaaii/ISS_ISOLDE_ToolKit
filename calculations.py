@@ -3,17 +3,29 @@ from flask import Flask, jsonify, request
 from data_utils import read_nuclear_mass_table
 
 df=read_nuclear_mass_table()
+df.reset_index(drop=True, inplace=True)
 
-def extract_nuclear_mass(df, N, Z):
-    filtered_df = df.loc[(df['A'] == Z) & (df['N'] == N), 'Nuclear Mass']
+
+
+def extract_nuclear_mass(df, A, Z):
+    print("Z:", Z, "A:", A)
+    filtered_df = df.query('A == @A & Z == @Z')
+    print("Filtered DataFrame:", filtered_df)
     
     if filtered_df.empty:
         return None  # or some other placeholder/error message
     
-    return filtered_df.values[0]
+    return filtered_df['Nuclear Mass'].iloc[0]
 
 
-def calculate_nuclear_mass(df, particles):
+
+#filtered_df=extract_nuclear_mass(df, 1,2)
+#print(filtered_df)
+
+
+def calculate_nuclear_mass():
+
+
     """
     Calculate nuclear mass values for the specified particles.
 
@@ -24,7 +36,6 @@ def calculate_nuclear_mass(df, particles):
     Returns:
         A dictionary mapping particle names to their nuclear mass values.
     """
-def calculate_nuclear_mass():
     data = request.get_json()
     nuclear_mass_values = {}
 
@@ -32,8 +43,8 @@ def calculate_nuclear_mass():
 
     for particle in data:
         A = int(particle['a'])
-        N = int(particle['z'])
-        nuclear_mass = extract_nuclear_mass(df, A, N)
+        Z = int(particle['z'])
+        nuclear_mass = extract_nuclear_mass(df, A, Z)
         
         # Handle potential None value
         if nuclear_mass is None:

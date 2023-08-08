@@ -57,7 +57,32 @@
       <p id="v3Container"><i>V3 = </i><b id="v3"></b></p>
       <button onclick="calculateV3()">CALCULATE V3</button>
     </div>
+        <!-- Optimal heta form -->
 
+    <div class="optimal-theta-form" id="optimal-theta-form">
+      <label for="B">B:</label>
+      <input type="number" id="B" required>
+      <br>
+      
+      <label for="ro_meas">ro_meas:</label>
+      <input type="number" id="ro_meas" required>
+      <br>
+      
+      <label for="initial_theta_lab">Initial Theta_lab:</label>
+      <input type="number" id="initial_theta_lab" required>
+      <br>
+      
+      <label for="q">q:</label>
+      <input type="number" id="q" required>
+      <br>
+      
+      <button onclick="optimalThetaLab()">Calculate Optimal Theta</button>
+    </div>
+    
+    <div class="optimal-theta-result" id="optimal-theta-result">
+      <p><i>Optimal Theta (Lab Frame):</i></p>
+      <p id="optimal-theta"></p>
+    </div>
   </div>
 
 
@@ -71,7 +96,10 @@
   <script src="data.js"></script>
   <script src="script.js"></script>
   <script src="retrive_mass.js"></script>
+  <script src="m4.js"></script>
   <script src="v3.js"></script>
+  <script src="optimal_theta.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 

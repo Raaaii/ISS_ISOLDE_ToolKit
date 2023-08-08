@@ -273,3 +273,37 @@
   right: 10px;
   cursor: pointer;
 }
+
+
+/* Styles for the optimal theta section */
+
+.optimal-theta-form {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.optimal-theta-form label, .optimal-theta-form input {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.optimal-theta-form button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.optimal-theta-result {
+  margin-top: 20px;
+  display: none;
+}
+
+.optimal-theta-result p {
+  font-size: 18px;
+}
+
+

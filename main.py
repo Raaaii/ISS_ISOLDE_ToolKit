@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from data_utils import read_nuclear_mass_table
-from calculations import calculate_v3, calculate_nuclear_mass
+from calculations import calculate_v3, calculate_nuclear_mass, calcuate_m4, find_optimal_theta
+
 
 app = Flask(__name__)
 CORS(app)
@@ -35,6 +36,38 @@ def doCalculations():
     return calculate_nuclear_mass()
 
 
+@app.route('/calculate_m4', methods=['POST'])
+def doCalculationsforM4():
+    """
+    Calculate the mass of the fourth particle.
+
+    Request Format:
+    {
+        "particles": [
+            {"a": 1, "z": 1, "particle": "H-1"},
+            {"a": 2, "z": 1, "particle": "H-2"},
+            {"a": 3, "z": 2, "particle": "He-3"},
+            ...
+        ]
+    }
+
+    Response Format:
+    {
+        "Particle 4": 4.002603
+    }
+    """
+    data = request.get_json()
+    print("Received data:", data)  # Debug print
+    result = calcuate_m4(data['particles'])  # Adjust this line based on your actual function
+    response = {"Particle 4": result}
+    print("Sending response:", response)  # Debug print
+    return jsonify(response)
+
+
+
+
+
+
 # Route for calculating the velocity of the third particle
 @app.route('/calculate_v3', methods=['POST'])
 def doCalculationsforV3():
@@ -65,6 +98,23 @@ def doCalculationsforV3():
         )
     return jsonify(result)
 
+
+
+
+#Route to calculate optimal theta values 
+@app.route('/find_optimal_theta', methods=['POST'])
+def doCalculationsforOptimalTheta():
+
+
+    data = request.get_json()
+    result = find_optimal_theta(
+        ro_meas=data['ro_meas'],
+        v_3=data['v_3'],
+        m_3=data['m_3'],
+        B=data['B'],
+        q=data['q'],
+        initial_theta_lab=data['initial_theta_lab']
+    )
 
 
 if __name__ == '__main__':

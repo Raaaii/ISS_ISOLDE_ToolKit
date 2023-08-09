@@ -210,9 +210,9 @@
 }
 
 .masses input {
-  width: 50px;
+  width: 100px;
   padding: 5px;
-  border: 1px solid #c2c2c2;
+  border: 1px solid #000; /* Black border */
 }
 
 .masses #v3Container {

@@ -58,8 +58,8 @@ def calculate_nuclear_mass():
 
 # Constants for neutron and proton masses in MeV/c^2
 NEUTRON_MASS_MEV = 939.565
-PROTON_MASS_MEV = 938.272
 
+PROTON_MASS_MEV = 938.272
 
 def calcuate_m4():
     data = request.get_json()
@@ -82,7 +82,7 @@ def calcuate_m4():
 
 
 
-def calculate_v3(m1, m2, m3, m4, E_x, T_1):
+def calculate_v3(m1, m2, m3, E_x, T_1):
     """
     Calculate the velocity of the third particle in a nuclear reaction.
 
@@ -102,7 +102,7 @@ def calculate_v3(m1, m2, m3, m4, E_x, T_1):
     E_x = float(E_x)
     T_1 = float(T_1)
     T_i = (m2 / (m1 + m2)) * T_1
-    Q = (m1 + m2) - (m3 + m4)
+    Q = (m1 + m2) - (m3 + m1)
     numerator = 2 * m1 * (T_i + Q - E_x)
     denominator = m3 * (m3 + m1)
     v3 = math.sqrt(abs(numerator) / abs(denominator))

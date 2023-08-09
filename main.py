@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from data_utils import read_nuclear_mass_table
-from calculations import calculate_v3, calculate_nuclear_mass, calcuate_m4, find_optimal_theta
+from calculations import calculate_v3, calculate_nuclear_mass, calculate_m4, find_optimal_theta
 
 
 app = Flask(__name__)
@@ -36,6 +36,21 @@ def doCalculations():
     return calculate_nuclear_mass()
 
 
+
+from flask import Flask, jsonify, request
+import math
+from data_utils import read_nuclear_mass_table
+
+app = Flask(__name__)
+
+df = read_nuclear_mass_table()
+df.reset_index(drop=True, inplace=True)
+
+
+
+
+# Calculate the mass of the fourth particle
+
 @app.route('/calculate_m4', methods=['POST'])
 def doCalculationsforM4():
     """
@@ -58,12 +73,10 @@ def doCalculationsforM4():
     """
     data = request.get_json()
     print("Received data:", data)  # Debug print
-    result = calcuate_m4(data['particles'])  # Adjust this line based on your actual function
+    result = calculate_m4(data['particles'])  # Call the modified calculate_m4 function
     response = {"Particle 4": result}
     print("Sending response:", response)  # Debug print
     return jsonify(response)
-
-
 
 
 

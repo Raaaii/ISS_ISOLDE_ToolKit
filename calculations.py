@@ -61,28 +61,62 @@ NEUTRON_MASS_MEV = 939.565
 
 PROTON_MASS_MEV = 938.272
 
-def calcuate_m4():
+def calculate_m4(a1, z1, a2, z2, a3, z3):
+
     data = request.get_json()
-    m4_values = {}  # Create an empty dictionary to store mass values for each particle
+
+    # Calculate "a" and "z" values of the fourth particle based on the given three particles
+    a1 = data[0]['a']
+    z1 = data[0]['z']
+    a2 = data[1]['a']
+    z2 = data[1]['z']
+    a3 = data[2]['a']
+    z3 = data[2]['z']
+
+    # Calculate "a" and "z" values of the fourth particle
+    a4 = a1 + a2 - a3
+    z4 = z1 + z2 - z3
+
+    a4, z4 = calculate_m4(data['particles'])  # Call the modified calculate_m4 function and get a4, z4
+
+    # Retrieve mass excess and nuclear mass of the fourth particle from the DataFrame
+    filtered_df = df.query('A == @a4 & Z == @z4')
+
+    if not filtered_df.empty:
+        mass_excess_4 = filtered_df['Mass Excess'].iloc[0]
+        nuclear_mass_4 = filtered_df['Nuclear Mass'].iloc[0]
+    else:
+        mass_excess_4 = None
+        nuclear_mass_4 = None
+
+    # Now you have the mass excess and nuclear mass of the fourth particle
+    print("Mass Excess of Particle 4:", mass_excess_4)
+    print("Nuclear Mass of Particle 4:", nuclear_mass_4)
+
+
+
+#def calcuate_m4():
+ #   data = request.get_json()
+ #   m4_values = {}  # Create an empty dictionary to store mass values for each particle
     
-    for particle in data:
-        A = int(particle['a'])
-        Z = int(particle['z'])
-        A_4 = int(data[0]['a']) + int(data[1]['a']) - int(data[2]['a'])
-        Z_4 = int(data[0]['z']) + int(data[1]['z']) - int(data[2]['z'])
+ #   for particle in data:
+ #       A = int(particle['a'])
+ #       Z = int(particle['z'])
+ #       A_4 = int(data[0]['a']) + int(data[1]['a']) - int(data[2]['a'])
+ #       Z_4 = int(data[0]['z']) + int(data[1]['z']) - int(data[2]['z'])
         
-        # Calculate the mass of the fourth particle
-        m4 = (A_4 - Z_4) * NEUTRON_MASS_MEV + Z_4 * PROTON_MASS_MEV + df.query('A == @A_4 & Z == @Z_4')['Mass Excess'].iloc[0]
+ #       # Calculate the mass of the fourth particle
+ #       m4 = (A_4 - Z_4) * NEUTRON_MASS_MEV + Z_4 * PROTON_MASS_MEV + df.query('A == @A_4 & Z == @Z_4')['Mass Excess'].iloc[0]
         
         # Store the calculated mass in the dictionary
-        m4_values['Particle 4'] = m4
+  #      m4_values['Particle 4'] = m4
 
-    return jsonify(m4_values)  # Return the dictionary with calculated mass values
-
-
+ #   return jsonify(m4_values)  # Return the dictionary with calculated mass values
 
 
-def calculate_v3(m1, m2, m3, E_x, T_1):
+
+
+def calculate_v3(m1, m2, m3,m4,  E_x, T_1):
     """
     Calculate the velocity of the third particle in a nuclear reaction.
 
@@ -102,7 +136,7 @@ def calculate_v3(m1, m2, m3, E_x, T_1):
     E_x = float(E_x)
     T_1 = float(T_1)
     T_i = (m2 / (m1 + m2)) * T_1
-    Q = (m1 + m2) - (m3 + m1)
+    Q = (m1 + m2) - (m3 + m4)
     numerator = 2 * m1 * (T_i + Q - E_x)
     denominator = m3 * (m3 + m1)
     v3 = math.sqrt(abs(numerator) / abs(denominator))

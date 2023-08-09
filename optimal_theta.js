@@ -1,5 +1,5 @@
 function optimal_theta_lab(){
-    fetch("http://localhost:5500/optimal_theta_lab", {
+    fetch("http://localhost:5501/optimal_theta_lab", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

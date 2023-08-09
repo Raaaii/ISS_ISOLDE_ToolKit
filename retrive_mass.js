@@ -5,7 +5,7 @@ function retrieveDataAndCalculateMassExcess(particleValues) {
     const popup = document.getElementById("popup");
     popup.innerHTML = ""; // Clear any previous content
   
-    fetch("http://localhost:5500/calculate_mass_excess", {
+    fetch("http://localhost:5501/calculate_mass_excess", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

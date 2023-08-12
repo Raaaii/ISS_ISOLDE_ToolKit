@@ -37,53 +37,81 @@
       <button class="start-button">Start</button>
     </div>
 
+
+        <!-- Masses and Parameters -->
+
     <div class="masses" id="masses">
-      <label for="particle1">
-        <span class="bolded">Mass of Particle 1</span> [\(\frac{\text{MeV}}{c^2}\)]</label>
-      <input type="text" id="particle1" disabled>
-      <br>
-      <label for="particle2">Mass of Particle 2 [\(\frac{\text{MeV}}{c^2}\)]</label>
-      <input type="text" id="particle2" disabled>
-      <br>
-      <label for="particle3">Mass of Particle 3 [\(\frac{\text{MeV}}{c^2}\)]</label>
-      <input type="text" id="particle3" disabled>
-      <br>
-      <label for="E_x">E_x [\(\text{MeV}\)]</label>
-      <input type="number" id="E_x">
-      <br>
-      <label for="T_1">T_1 [\(\text{MeV}\)]</label>
-      <input type="text" id="T_1">
-      <br>
-      <p id="v3Container"><i>V3 = </i><b id="v3"></b></p>
-      <button onclick="calculateV3()">CALCULATE V3</button>
+      <h2>Particle Masses and Parameters</h2>
+      <div class="mass-input">
+        <label for="particle1">Mass of Projectile [\(\frac{\text{MeV}}{c^2}\)]:</label>
+        <input type="text" id="particle1" disabled>
+      </div>
+      <div class="mass-input">
+        <label for="particle2">Mass of Target [\(\frac{\text{MeV}}{c^2}\)]:</label>
+        <input type="text" id="particle2" disabled>
+      </div>
+      <div class="mass-input">
+        <label for="particle3">Mass of Ejectile [\(\frac{\text{MeV}}{c^2}\)]:</label>
+        <input type="text" id="particle3" disabled>
+      </div>
+      <div class="mass-input">
+        <label for="E_x"> Excittation Energy \(E_x\) [\(\text{MeV}\)]:</label>
+        <input type="number" id="E_x">
+      </div>
+      <div class="mass-input">
+        <label for="T_1"> Initial Kinetic Energy \(T_1 \) [\(\text{MeV}\)]:</label>
+        <input type="text" id="T_1">
+      </div>
+      <div class="v3Container">
+        <p><i>V3 = </i><b id="v3"></b></p>
+        <button onclick="calculateV3()">CALCULATE V3</button>
+      </div>
     </div>
+
+    <div class="theta-calculation">
+      <h2>Calculate Theta from Z Values</h2>
+      <div class="z-input">
+        <label for="z1">z_1:</label>
+        <input type="number" id="z1" required>
+      </div>
+      <div class="z-input">
+        <label for="z2">z_2:</label>
+        <input type="number" id="z2" required>
+      </div>
+      <button class="calculate-button" onclick="calculateThetaFromZ()">Calculate Theta</button>
+    </div>
+
         <!-- Optimal heta form -->
 
-    <div class="optimal-theta-form" id="optimal-theta-form">
-      <label for="B">B:</label>
-      <input type="number" id="B" required>
-      <br>
-      
-      <label for="ro_meas">ro_meas:</label>
-      <input type="number" id="ro_meas" required>
-      <br>
-      
-      <label for="initial_theta_lab">Initial Theta_lab:</label>
-      <input type="number" id="initial_theta_lab" required>
-      <br>
-      
-      <label for="q">q:</label>
-      <input type="number" id="q" required>
-      <br>
-      
-      <button onclick="optimalThetaLab()">Calculate Optimal Theta</button>
-    </div>
-    
-    <div class="optimal-theta-result" id="optimal-theta-result">
-      <p><i>Optimal Theta (Lab Frame):</i></p>
-      <p id="optimal-theta"></p>
-    </div>
-  </div>
+        <div class="optimal-theta-form" id="optimal-theta-form">
+          <h2>Calculate Optimal Theta (Lab Frame)</h2>
+          <div class="optimal-input">
+            <label for="B">Magnetic Filed: B [\(\text{T}\)]:</label>
+            <input type="number" id="B" required>
+          </div>
+          <div class="optimal-input">
+            <label for="ro_meas1"> Smaller Radius &rho;<sub>1</sub></label>
+            <input type="number" id="ro_meas1" required>
+          </div>
+          <div class="optimal-input">
+            <label for="ro_meas2"> Larger Radius &rho;<sub>2</sub></label>
+            <input type="number" id="ro_meas2" required>
+          </div>
+          <div class="optimal-input">
+            <label for="initial_theta_lab">Initial &theta;<sub>lab</sub></label>
+            <input type="number" id="initial_theta_lab" required>
+          </div>
+          <div class="optimal-input">
+            <label for="q">q:</label>
+            <input type="number" id="q" required>
+          </div>
+          <button class="calculate-button" onclick="optimal_theta_lab()">Calculate</button>
+        </div>
+        
+        <div class="optimal-theta-result" id="OptimalThetaContainer">
+          <h3>Optimal Theta (Lab Frame)</h3>
+          <p id="OPtimalTheta"></p>
+        </div>
 
 
 

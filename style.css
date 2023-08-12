@@ -189,31 +189,45 @@
   color: #666666;
 }
 
-/* Styles for the masses section */
-#masses {
-  display: none;
+
+/* Styles for the particle mass section */
+.masses {
+  background-color: #f7f7f7;
+  border: 1px solid #c2c2c2;
+  padding: 20px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.masses {
-  background-color: #dbf1db;
+.masses h2 {
+  background-color: #85e085;
   border: 1px solid #c2c2c2;
   padding: 10px;
+  margin: 0;
   margin-top: 20px;
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 20px;
+  margin-bottom: 20px;
+  color: #ffffff; /* Change title text color to white */
 }
 
-.masses label {
-  font-family: "Arial", sans-serif;
+.mass-input {
+  margin-bottom: 15px; /* Increase margin for more spacing */
+}
+
+.mass-input label {
+  display: block;
   font-weight: bold;
+  margin-bottom: 5px;
+  color: #666666; /* Change label text color to gray */
 }
 
-.masses input {
-  width: 100px;
-  padding: 5px;
-  border: 1px solid #000; /* Black border */
+.mass-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
 }
+
+
 
 .masses #v3Container {
   margin-top: 10px;
@@ -274,36 +288,164 @@
   cursor: pointer;
 }
 
+/* Styles for the V3 calculation section */
 
-/* Styles for the optimal theta section */
-
-.optimal-theta-form {
+.v3Container {
   margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
+  text-align: left;
 }
 
-.optimal-theta-form label, .optimal-theta-form input {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.optimal-theta-form button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
+.v3Container button {
+  background-color: #85e085;
+  color: #ffffff;
   border: none;
+  padding: 15px; /* Increase padding for a square button */
+  width: 150px; /* Set a fixed width to make it square */
+  height: 50px; /* Set a fixed height to make it square */
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.v3Container p {
+  margin: 10px 0; /* Add margin above and below the V3 result */
+  font-size: 18px;
+  color: #333333;
+}
+
+.v3Container i {
+  font-style: normal;
+}
+
+.v3Container button:hover {
+  background-color: #5ca95c;
+}
+
+
+
+/* Styles for the theta calculation section given Z */
+
+.theta-calculation {
+  background-color: #f9f9f9;
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.theta-calculation h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #333333;
+}
+
+.z-input {
+  margin-bottom: 15px;
+}
+
+.z-input label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+.z-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+}
+
+.calculate-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 15px;
+  width: 150px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.calculate-button:hover {
+  background-color: #0056b3;
+}
+/* Styles for the optimal theta section */
+/* Styles for the optimal theta section */
+.optimal-theta-form {
+  background-color: #f7f7f7;
+  border: 1px solid #c2c2c2;
+  padding: 20px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.optimal-theta-form h2 {
+  background-color: #85e085;
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.optimal-input {
+  margin-bottom: 15px;
+}
+
+.optimal-input label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666666;
+}
+
+.optimal-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+}
+
+.calculate-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 15px;
+  width: 150px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.calculate-button:hover {
+  background-color: #0056b3;
 }
 
 .optimal-theta-result {
+  background-color: #f7f7f7;
+  border: 1px solid #c2c2c2;
+  padding: 20px;
   margin-top: 20px;
-  display: none;
+  font-family: Arial, sans-serif;
+}
+
+.optimal-theta-result h3 {
+  background-color: #85e085;
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 20px;
 }
 
 .optimal-theta-result p {
+  margin: 0;
   font-size: 18px;
+  color: #333333;
 }
-
 

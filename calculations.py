@@ -51,7 +51,16 @@ def calculate_nuclear_mass():
             nuclear_mass_values[particle['particle']] = "Data not found"
         else:
             nuclear_mass_values[particle['particle']] = nuclear_mass
-
+    a1=float(data[0]['a'])
+    z1=float(data[0]['z'])
+    a2=float(data[1]['a'])
+    z2=float(data[1]['z'])
+    a3=float(data[2]['a'])
+    z3=float(data[2]['z'])
+    # print("PODACIIIIII: ", float(data[0]['a']), float(data[0]['z']), float(data[1]['a']), float(data[1]['z']), float(data[2]['a']), float(data[2]['z']))
+    m4 = calculate_m4(float(data[0]['a']), float(data[0]['z']), float(data[1]['a']), float(data[1]['z']), float(data[2]['a']), float(data[2]['z']), df)
+    nuclear_mass_values['Particle 4'] = m4
+    print("M4 jE: ================================= ", m4)
     return jsonify(nuclear_mass_values)
 
 
@@ -61,37 +70,17 @@ NEUTRON_MASS_MEV = 939.565
 
 PROTON_MASS_MEV = 938.272
 
-def calculate_m4(a1, z1, a2, z2, a3, z3):
-
-    data = request.get_json()
-
-    # Calculate "a" and "z" values of the fourth particle based on the given three particles
-    a1 = data[0]['a']
-    z1 = data[0]['z']
-    a2 = data[1]['a']
-    z2 = data[1]['z']
-    a3 = data[2]['a']
-    z3 = data[2]['z']
-
-    # Calculate "a" and "z" values of the fourth particle
-    a4 = a1 + a2 - a3
+def calculate_m4(a1,z1,a2,z2,a3,z3, df): # Calculate "a" and "z" values of the fourth particle
     z4 = z1 + z2 - z3
-
-    a4, z4 = calculate_m4(data['particles'])  # Call the modified calculate_m4 function and get a4, z4
-
-    # Retrieve mass excess and nuclear mass of the fourth particle from the DataFrame
+    a4 = a1 + a2 - a3
     filtered_df = df.query('A == @a4 & Z == @z4')
 
     if not filtered_df.empty:
-        mass_excess_4 = filtered_df['Mass Excess'].iloc[0]
         nuclear_mass_4 = filtered_df['Nuclear Mass'].iloc[0]
     else:
-        mass_excess_4 = None
-        nuclear_mass_4 = None
+        nuclear_mass_4 = "Data not found"
+    return nuclear_mass_4
 
-    # Now you have the mass excess and nuclear mass of the fourth particle
-    print("Mass Excess of Particle 4:", mass_excess_4)
-    print("Nuclear Mass of Particle 4:", nuclear_mass_4)
 
 
 
@@ -143,36 +132,94 @@ def calculate_v3(m1, m2, m3,m4,  E_x, T_1):
     return v3
 
 
+#Calculate the velocity of the fourth particle in a nuclear reaction.
+
+
+
 #Finding the optimal theta values. 
 
-def find_optimal_theta(ro_meas, v_3, m_3, B, q, initial_theta_lab, tolerance=1e-6, max_iterations=100):
+import math
+
+import math
+
+def given_z_find_theta(z_1, z_2, m1, m2, m3, m4, T_1, v_3, t_cyclotron):
+    z_1 = float(z_1)
+    z_2 = float(z_2)
+    m1 = float(m1)
+    m2 = float(m2)
+    m3 = float(m3)
+    m4 = float(m4)
+    T_1 = float(T_1)
+    v_3 = float(v_3)
+    t_cyclotron = 1e-6
+
+    V_i = math.sqrt(2 * T_1 * m1 / (m1 + m2))
+    V_f = m1 + m2 / (m3 + m4) * V_i
+
+    # Calculate the first theta_cm value for z_1
+    v_parallel_1 = z_1 / t_cyclotron
+    theta_cm_1 = math.acos((V_f - v_parallel_1) / v_3)
+
+    # Calculate the second theta_cm value for z_2
+    v_parallel_2 = z_2 / t_cyclotron
+    theta_cm_2 = math.acos((V_f - v_parallel_2) / v_3)
+
+    return theta_cm_1, theta_cm_2
 
 
-    B=float(B)
-    q=float(q)
-    m_3=float(m_3)
-    v_3=float(v_3)
-    ro_meas=float(ro_meas)
-    initial_theta_lab=float(initial_theta_lab)
-    tolerance=float(tolerance)
-    max_iterations=int(max_iterations)
 
-    
-    theta_lab = initial_theta_lab
-    z_mes = 2 * math.pi /B /q * m_3 * v_3 * math.cos(theta_lab)
+                       
+
+
+
+def find_optimal_theta(ro_meas1, ro_meas2, v_3, m_3, B, q, initial_theta_lab, tolerance=1e-6, max_iterations=100):
+    B = float(B)
+    q = float(q)
+    m_3 = float(m_3)
+    v_3 = float(v_3)
+    ro_meas1 = float(ro_meas1)
+    ro_meas2 = float(ro_meas2)
+    initial_theta_lab = float(initial_theta_lab)
+    tolerance = float(tolerance)
+    max_iterations = int(max_iterations)
+
+    theta_lab1 = initial_theta_lab
+    theta_lab2 = initial_theta_lab
+
+    z_mes1 = 2 * math.pi / B / q * m_3 * v_3 * math.cos(theta_lab1)
+    z_mes2 = 2 * math.pi / B / q * m_3 * v_3 * math.cos(theta_lab2)
 
     for i in range(max_iterations):
-        R = (m_3 * v_3 * math.sin(theta_lab)) / (q * B)  # Calculate R based on the current theta_lab
-        psi = 2 * math.asin(ro_meas / (2 * R))  # Calculate psi using the current theta_lab and ro_meas
+        R1 = (m_3 * v_3 * math.sin(theta_lab1)) / (q * B)
+        psi1 = 2 * math.asin(ro_meas1 / (2 * R1))
 
-        numerator = (1 - (psi / (2 * math.pi))) * z_mes - z_mes
-        denominator = 1 - (psi / (2 * math.pi))
-        z_next = z_mes - numerator / denominator
+        numerator1 = (1 - (psi1 / (2 * math.pi))) * z_mes1 - z_mes1
+        denominator1 = 1 - (psi1 / (2 * math.pi))
+        z_next1 = z_mes1 - numerator1 / denominator1
 
-        if abs(z_next - z_mes) < tolerance:
-            break  # Stop iterating if z converges within the tolerance
+        if abs(z_next1 - z_mes1) < tolerance:
+            break
 
-        z_mes = z_next
+        z_mes1 = z_next1
 
-    theta_lab = math.acos((q * B * z_next) / (2 * math.pi * m_3 * v_3))
+    for i in range(max_iterations):
+        R2 = (m_3 * v_3 * math.sin(theta_lab2)) / (q * B)
+        psi2 = 2 * math.asin(ro_meas2 / (2 * R2))
+
+        numerator2 = (1 - (psi2 / (2 * math.pi))) * z_mes2 - z_mes2
+        denominator2 = 1 - (psi2 / (2 * math.pi))
+        z_next2 = z_mes2 - numerator2 / denominator2
+
+        if abs(z_next2 - z_mes2) < tolerance:
+            break
+
+        z_mes2 = z_next2
+
+    theta_lab1 = math.acos((q * B * z_next1) / (2 * math.pi * m_3 * v_3))
+    theta_lab2 = math.acos((q * B * z_next2) / (2 * math.pi * m_3 * v_3))
+
+    theta_lab = theta_lab2 - theta_lab1
+
+    #as output two angles. !!!!
+
     return theta_lab

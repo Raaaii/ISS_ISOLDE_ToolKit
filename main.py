@@ -106,15 +106,21 @@ def doCalculationsforV3():
 
 
 
-url = "http://localhost:5500/given_z_find_theta"  # Change the URL to match your endpoint
+@app.route("/given_z_find_theta", methods=['POST'])  # Change the URL to match your endpoint
 
 def doCalculationsGivenZtoTheta():
 
     data = request.get_json()
     result = given_z_find_theta(
-        z_1=data['z_1'],
-        z_2=data['z_2'],
-        t_cyclotron=data['t_cyclotron']
+        m1=data['mass1'],
+        m2=data['mass2'],
+        m3=data['mass3'],
+        m4=data['mass4'],
+        v_3=data['v_3'],
+        T_1=data['T_1'],
+        z=data['z'],
+        #q is 1.6*10^-19
+        B_value=data['B_value']
     )
 
     print(result)
@@ -132,6 +138,9 @@ def doCalculationsforOptimalTheta():
         m_3=data['mass3'],
         B=data['B'],
         q=data['q'],
+        t_cyclotron=data['t_cyclotron'],
+        V_f=data['V_f'],
+        theta_cm=data['theta_cm'],
         initial_theta_lab=data['initial_theta_lab']
     )
 

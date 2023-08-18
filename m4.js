@@ -1,5 +1,5 @@
 function calculateM4() {
-    fetch("http://localhost:5501/calculate_m4", {
+    fetch("http://localhost:5500/calculate_m4", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

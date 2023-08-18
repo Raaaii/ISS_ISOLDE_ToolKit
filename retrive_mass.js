@@ -45,6 +45,7 @@ function retrieveDataAndCalculateMassExcess(particleValues) {
         mass1 = document.querySelector('#particle1').value = masses['Particle 1']
         mass2 = document.querySelector('#particle2').value = masses['Particle 2']
         mass3 = document.querySelector('#particle3').value = masses['Particle 3']
+        
   
         popup.appendChild(closeButton);
         popup.appendChild(content);

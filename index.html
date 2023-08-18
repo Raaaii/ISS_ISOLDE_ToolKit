@@ -55,7 +55,7 @@
         <input type="text" id="particle3" disabled>
       </div>
       <div class="mass-input">
-        <label for="E_x"> Excittation Energy \(E_x\) [\(\text{MeV}\)]:</label>
+        <label for="E_x"> Excitation Energy \(E_x\) [\(\text{MeV}\)]:</label>
         <input type="number" id="E_x">
       </div>
       <div class="mass-input">
@@ -68,15 +68,17 @@
       </div>
     </div>
 
+
+        <!-- Z given calculate thetas -->
     <div class="theta-calculation">
-      <h2>Calculate Theta from Z Values</h2>
+      <h2>Calculate Theta for a given z</h2>
       <div class="z-input">
-        <label for="z1">z_1:</label>
-        <input type="number" id="z1" required>
+        <label for="z">z [m]:</label>
+        <input type="number" id="z" required>
       </div>
-      <div class="z-input">
-        <label for="z2">z_2:</label>
-        <input type="number" id="z2" required>
+      <div class="B_value-input">
+        <label for="B_value">B [T]:</label>
+        <input type="number" id="B_value" required>
       </div>
       <button class="calculate-button" onclick="calculateThetaFromZ()">Calculate Theta</button>
     </div>
@@ -86,10 +88,6 @@
         <div class="optimal-theta-form" id="optimal-theta-form">
           <h2>Calculate Optimal Theta (Lab Frame)</h2>
           <div class="optimal-input">
-            <label for="B">Magnetic Filed: B [\(\text{T}\)]:</label>
-            <input type="number" id="B" required>
-          </div>
-          <div class="optimal-input">
             <label for="ro_meas1"> Smaller Radius &rho;<sub>1</sub></label>
             <input type="number" id="ro_meas1" required>
           </div>
@@ -98,12 +96,12 @@
             <input type="number" id="ro_meas2" required>
           </div>
           <div class="optimal-input">
-            <label for="initial_theta_lab">Initial &theta;<sub>lab</sub></label>
+            <label for="initial_theta_lab">Initial &theta;</label>
             <input type="number" id="initial_theta_lab" required>
           </div>
           <div class="optimal-input">
-            <label for="q">q:</label>
-            <input type="number" id="q" required>
+            <label for="theta_cm"> z<sub>meas</sub></label>
+            <input type="number" id="theta_cm" required>
           </div>
           <button class="calculate-button" onclick="optimal_theta_lab()">Calculate</button>
         </div>
@@ -125,6 +123,7 @@
   <script src="script.js"></script>
   <script src="retrive_mass.js"></script>
   <script src="v3.js"></script>
+  <script src="z_given_theta.js"></script>
   <script src="optimal_theta.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>

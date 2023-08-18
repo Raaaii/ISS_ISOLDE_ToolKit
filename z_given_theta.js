@@ -6,10 +6,23 @@ function calculateThetaFromZ(){
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        z_1: document.querySelector("#z_1").value,
-        z_2: document.querySelector("#z_2").value,
-        t_cylcotron: document.querySelector("#t_cylcotron").value
+        mass1: masses['Particle 1'],
+        mass2: masses['Particle 2'],
+        mass3: masses['Particle 3'],
+        mass4: masses['Particle 4'],
+        v_3: v3,
+        T_1: document.querySelector("#T_1").value,  
+        z: document.querySelector("#z").value,
+        B_value: document.querySelector("#B_value").value
         }),
 
     })
+    .then((response) => response.json())
+    .then((res) => {
+        console.log(res);
+        theta_cm = res;
+        document.querySelector("#OptimalThetaContainer").style.display = 'block';
+        document.querySelector("#OPtimalTheta").innerHTML = theta_cm;
+    });
+
 }

@@ -138,88 +138,89 @@ def calculate_v3(m1, m2, m3,m4,  E_x, T_1):
 
 #Finding the optimal theta values. 
 
-import math
 
-import math
-
-def given_z_find_theta(z_1, z_2, m1, m2, m3, m4, T_1, v_3, t_cyclotron):
-    z_1 = float(z_1)
-    z_2 = float(z_2)
+def given_z_find_theta(z, m1, m2, m3, m4, T_1, v_3, B_value):
+    z = float(z)
+    q=1.602e-19
+    c=3*10**8
     m1 = float(m1)
     m2 = float(m2)
     m3 = float(m3)
     m4 = float(m4)
     T_1 = float(T_1)
     v_3 = float(v_3)
-    t_cyclotron = 1e-6
+    B_value = float(B_value)
 
     V_i = math.sqrt(2 * T_1 * m1 / (m1 + m2))
-    V_f = m1 + m2 / (m3 + m4) * V_i
+    V_f = (m1 + m2) / (m3 + m4) * V_i
+    t_cylcotron = 2 * math.pi * m3 / (q * B_value)
 
     # Calculate the first theta_cm value for z_1
-    v_parallel_1 = z_1 / t_cyclotron
-    theta_cm_1 = math.acos((V_f - v_parallel_1) / v_3)
+    v_parallel_1 = z / t_cylcotron
+    theta_cm = math.acos((V_f - v_parallel_1) / (v_3*c))
 
-    # Calculate the second theta_cm value for z_2
-    v_parallel_2 = z_2 / t_cyclotron
-    theta_cm_2 = math.acos((V_f - v_parallel_2) / v_3)
-
-    return theta_cm_1, theta_cm_2
+    return theta_cm
 
 
 
-                       
+import math
 
+def find_optimal_theta(z_meas, V_f, v_3, m_3, ro_measured1, ro_measured2, 
+                       initial_theta_lab, B, q, tolerance=1e-6, max_iterations=100):
+    """
+    Calculates the optimal values of theta (angle) that minimize the difference between
+    the calculated z_meas value and the given z_meas value for a given set of parameters.
 
+    Parameters:
+        z_meas (float): The measured z value.
+        V_f (float): Final velocity of the particle.
+        v_3 (float): Velocity of particle 3.
+        m_3 (float): Mass of particle 3.
+        ro_measured1 (float): Measured radius 1.
+        ro_measured2 (float): Measured radius 2.
+        initial_theta_lab (float): Initial theta in the lab frame.
+        B (float): Magnetic field strength.
+        q (float): Charge of the particle.
+        tolerance (float, optional): Tolerance for convergence. Defaults to 1e-6.
+        max_iterations (int, optional): Maximum number of iterations. Defaults to 100.
 
-def find_optimal_theta(ro_meas1, ro_meas2, v_3, m_3, B, q, initial_theta_lab, tolerance=1e-6, max_iterations=100):
+    Returns:
+        list: A list of optimal theta values for the given parameters.
+    """
+     
     B = float(B)
-    q = float(q)
+    q = 1.602e-19
     m_3 = float(m_3)
     v_3 = float(v_3)
-    ro_meas1 = float(ro_meas1)
-    ro_meas2 = float(ro_meas2)
+    V_f = float(V_f)
+    ro_measured1 = float(ro_measured1)
+    ro_measured2 = float(ro_measured2)
     initial_theta_lab = float(initial_theta_lab)
     tolerance = float(tolerance)
     max_iterations = int(max_iterations)
 
-    theta_lab1 = initial_theta_lab
-    theta_lab2 = initial_theta_lab
+    # Calculate t_cyclotron based on B and q
+    t_cyclotron = 2 * math.pi * m_3 * v_3 / (q * B)
+    
+    optimal_thetas = []
 
-    z_mes1 = 2 * math.pi / B / q * m_3 * v_3 * math.cos(theta_lab1)
-    z_mes2 = 2 * math.pi / B / q * m_3 * v_3 * math.cos(theta_lab2)
+    for ro_meas in [ro_measured1, ro_measured2]:
+        # Gradient descent optimization
+        theta = initial_theta_lab
+        for iteration in range(max_iterations):
+            # Calculate z_meas using the provided formula
+            z_meas_calculated = (V_f - v_3 * math.cos(theta)) * (1 - 1 / math.pi * math.asin(ro_meas / (m_3 * v_3 * math.sin(theta) / (q * B)))) * t_cyclotron
 
-    for i in range(max_iterations):
-        R1 = (m_3 * v_3 * math.sin(theta_lab1)) / (q * B)
-        psi1 = 2 * math.asin(ro_meas1 / (2 * R1))
+            # Calculate the difference between calculated z_meas and given z_meas
+            difference = z_meas_calculated - z_meas
 
-        numerator1 = (1 - (psi1 / (2 * math.pi))) * z_mes1 - z_mes1
-        denominator1 = 1 - (psi1 / (2 * math.pi))
-        z_next1 = z_mes1 - numerator1 / denominator1
+            # Calculate gradient using finite difference
+            gradient = difference / (2 * tolerance)
+            theta -= gradient * tolerance
 
-        if abs(z_next1 - z_mes1) < tolerance:
-            break
-
-        z_mes1 = z_next1
-
-    for i in range(max_iterations):
-        R2 = (m_3 * v_3 * math.sin(theta_lab2)) / (q * B)
-        psi2 = 2 * math.asin(ro_meas2 / (2 * R2))
-
-        numerator2 = (1 - (psi2 / (2 * math.pi))) * z_mes2 - z_mes2
-        denominator2 = 1 - (psi2 / (2 * math.pi))
-        z_next2 = z_mes2 - numerator2 / denominator2
-
-        if abs(z_next2 - z_mes2) < tolerance:
-            break
-
-        z_mes2 = z_next2
-
-    theta_lab1 = math.acos((q * B * z_next1) / (2 * math.pi * m_3 * v_3))
-    theta_lab2 = math.acos((q * B * z_next2) / (2 * math.pi * m_3 * v_3))
-
-    theta_lab = theta_lab2 - theta_lab1
-
-    #as output two angles. !!!!
-
-    return theta_lab
+            if abs(difference) < tolerance:
+                break
+        
+        optimal_thetas.append(theta)
+    
+    return optimal_thetas

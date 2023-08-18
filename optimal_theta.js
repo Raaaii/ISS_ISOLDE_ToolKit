@@ -11,7 +11,8 @@ function optimal_theta_lab(){
             ro_measured2: document.querySelector("#ro_meas2").value,
             v_3: v3,
             initial_theta_lab: document.querySelector("#initial_theta_lab").value,  
-            q: document.querySelector("#q").value
+            q: document.querySelector("#q").value,
+            theta_cm: document.querySelector("#theta_cm").value,
         }),
     })
     .then((response) => response.json())

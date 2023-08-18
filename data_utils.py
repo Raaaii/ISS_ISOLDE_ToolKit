@@ -22,6 +22,7 @@ def read_nuclear_mass_table():
     A_values = []
     mass_excess_values = []
     Z_values = []
+    Binding_energy_values = []
     nuclear_mass = []
     for line in lines:
         if not line.strip():
@@ -36,14 +37,15 @@ def read_nuclear_mass_table():
         Z_values.append(int(columns[2]))
         A_values.append(int(columns[3]))
         mass_excess_values.append(float(columns[4]))
-        nuclear_mass_value = Z_values[-1] * PROTON_MASS_MEV + N_values[-1] * NEUTRON_MASS_MEV + mass_excess_values[-1]
+        Binding_energy_values.append(float(columns[6]))
+        nuclear_mass_value = Z_values[-1] * PROTON_MASS_MEV + N_values[-1] * NEUTRON_MASS_MEV - Binding_energy_values[-1]*A_values[-1]/1000
         nuclear_mass.append(nuclear_mass_value)
 
     data = {
         'A': A_values,
         'N': N_values,
         'Z': Z_values,
-        'Mass Excess': mass_excess_values,
+        'Binding Energy': Binding_energy_values,
         'Nuclear Mass': nuclear_mass
     }
     

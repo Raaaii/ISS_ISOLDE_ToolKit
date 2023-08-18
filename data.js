@@ -1,5 +1,6 @@
 let masses;
 let v3;
-let theta_lab;
+let T_1;
+let theta_cm;
 
 

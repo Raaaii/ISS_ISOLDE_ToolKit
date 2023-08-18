@@ -17,7 +17,7 @@ function calculateV3() {
     .then((res) => {
       console.log(res);
       v3 = res;
-      document.querySelector("#v3Container").style.display = 'block';
+      document.querySelector(".v3Container").style.display = 'block';
       document.querySelector("#v3").innerHTML = v3;
     });
 }

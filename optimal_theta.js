@@ -1,25 +1,27 @@
-function optimal_theta_lab(){
+function optimal_theta_lab() {
     fetch("http://localhost:5500/find_optimal_theta", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            mass1: masses['Particle 1'],
+            mass2: masses['Particle 2'],
             mass3: masses['Particle 3'],
-            B: document.querySelector("#B").value,
-            ro_measured1: document.querySelector("#ro_meas1").value,
-            ro_measured2: document.querySelector("#ro_meas2").value,
+            mass4: masses['Particle 4'],
             v_3: v3,
-            initial_theta_lab: document.querySelector("#initial_theta_lab").value,  
-            q: document.querySelector("#q").value,
-            theta_cm: document.querySelector("#theta_cm").value,
+            T_1: document.querySelector("#T_1").value,
+            B_value: document.querySelector("#B_value").value,
+            ro_measured1: document.querySelector("#ro_measured1").value,
+            ro_measured2: document.querySelector("#ro_measured2").value,
+            z_meas: document.querySelector("#z_meas").value,
         }),
     })
     .then((response) => response.json())
     .then((res) => {
-      console.log(res);
-      theta_lab = res;
-      document.querySelector("#OptimalThetaContainer").style.display = 'block';
-      document.querySelector("#OPtimalTheta").innerHTML = theta_lab;
+        console.log(res);
+        const optimal_thetas = res.join(', '); // Convert the array to a comma-separated string
+        document.querySelector("#OptimalThetaContainer").style.display = 'block';
+        document.querySelector("#OPtimalTheta").textContent = optimal_thetas;
     });
 }

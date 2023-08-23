@@ -21,7 +21,7 @@ function calculateThetaFromZ(){
     .then((res) => {
         console.log(res);
         theta_cm = res;
-        document.querySelector("#OptimalThetaContainer").style.display = 'block';
+        document.querySelector(".ThetaZContainer").style.display = 'block';
         document.querySelector("#OPtimalTheta").innerHTML = theta_cm;
     });
 

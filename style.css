@@ -235,7 +235,7 @@
 }
 
 .masses #v3 {
-  color: #c71a1a;
+  color: #ffffff;
 }
 
 .masses button {
@@ -288,38 +288,81 @@
   cursor: pointer;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Styles for the V3 calculation section */
 
-.v3Container {
-  margin-top: 20px;
-  text-align: left;
-}
 
-.v3Container button {
-  background-color: #85e085;
+.calculatebutton {
+  background-color: #007bff;
   color: #ffffff;
   border: none;
-  padding: 15px; /* Increase padding for a square button */
-  width: 150px; /* Set a fixed width to make it square */
-  height: 50px; /* Set a fixed height to make it square */
+  padding: 10px;
+  width: 150px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
 }
 
+.calculate-button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for v3container */
+.v3Container {
+  padding: 5px; /* Add padding for separation from other elements */
+  display: inline-block; /* Inline-block to keep the elements side by side */
+  margin-top: 10px; /* Add margin at the top to separate from other elements */
+}
+
+
 .v3Container p {
-  margin: 10px 0; /* Add margin above and below the V3 result */
+  background-color: #85e085; /* Greenish color for background */
+  margin: 10px; /* Remove default margin for paragraph */
   font-size: 18px;
-  color: #333333;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  font-weight: bold;
+
+  
 }
 
-.v3Container i {
-  font-style: normal;
+.v3Container b {
+  color: white; /* White color for result number */
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px; /* Add padding to separate from other elements */
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
-.v3Container button:hover {
-  background-color: #5ca95c;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Styles for the theta calculation section given Z */
@@ -368,6 +411,7 @@
 
 .B_value-input label { /* Apply the same styles to both Z and B input labels */
   display: block;
+  padding: 10px;
   font-weight: bold;
   margin-bottom: 5px;
   color: #666666;
@@ -381,11 +425,37 @@
   border-radius: 5px;
 }
 
+.ThetaZContainer {
+  background-color: #85e085; /* Greenish color for background */
+  padding: 5px; /* Add padding for separation from other elements */
+  display: inline-block; /* Inline-block to keep the elements side by side */
+  margin-top: 10px; /* Add margin at the top to separate from other elements */
+}
+
+.ThetaZContainer p {
+  margin: 10; /* Remove default margin for paragraph */
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  font-weight: bold;
+
+  
+}
+
+.ThetaZContainer b {
+  color: white; /* White color for result number */
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px; /* Add padding to separate from other elements */
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
 .calculate-button {
   background-color: #007bff;
   color: #ffffff;
   border: none;
-  padding: 55px;
+  padding: 10px;
   width: 150px;
   font-size: 16px;
   cursor: pointer;
@@ -395,7 +465,19 @@
 .calculate-button:hover {
   background-color: #0056b3;
 }
-/* Styles for the optimal theta section */
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Styles for the optimal theta section */
 .optimal-theta-form {
   background-color: #f7f7f7;

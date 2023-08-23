@@ -62,9 +62,11 @@
         <label for="T_1"> Initial Kinetic Energy \(T_1 \) [\(\text{MeV}\)]:</label>
         <input type="text" id="T_1">
       </div>
+      <div>
+        <button class="calculatebutton" onclick="calculateV3()">Calculate V3</button>
+      </div>
       <div class="v3Container">
         <p><i>V3 = </i><b id="v3"></b></p>
-        <button onclick="calculateV3()">CALCULATE V3</button>
       </div>
     </div>
 
@@ -82,26 +84,29 @@
       </div>
       <button class="calculate-button" onclick="calculateThetaFromZ()">Calculate Theta</button>
     </div>
+    <div class="ThetaZContainer">
+      <p><i>&theta;=</i><b id="OPtimalTheta"></b></p>
+    </div>
 
         <!-- Optimal heta form -->
 
         <div class="optimal-theta-form" id="optimal-theta-form">
           <h2>Calculate Optimal Theta (Lab Frame)</h2>
           <div class="optimal-input">
-            <label for="ro_meas1"> Smaller Radius &rho;<sub>1</sub></label>
-            <input type="number" id="ro_meas1" required>
+            <label for="ro_measured1"> Smaller Radius &rho;<sub>1</sub></label>
+            <input type="number" id="ro_measured1" required>
           </div>
           <div class="optimal-input">
-            <label for="ro_meas2"> Larger Radius &rho;<sub>2</sub></label>
-            <input type="number" id="ro_meas2" required>
+            <label for="ro_measured2"> Larger Radius &rho;<sub>2</sub></label>
+            <input type="number" id="ro_measured2" required>
           </div>
           <div class="optimal-input">
-            <label for="initial_theta_lab">Initial &theta;</label>
-            <input type="number" id="initial_theta_lab" required>
+            <label for="B_value"> B [T]</label>
+            <input type="number" id="B_value" required>
           </div>
           <div class="optimal-input">
-            <label for="theta_cm"> z<sub>meas</sub></label>
-            <input type="number" id="theta_cm" required>
+            <label for="z_meas"> z [m]</label>
+            <input type="number" id="z_meas" required>
           </div>
           <button class="calculate-button" onclick="optimal_theta_lab()">Calculate</button>
         </div>

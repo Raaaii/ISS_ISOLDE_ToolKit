@@ -133,15 +133,17 @@ def doCalculationsforOptimalTheta():
 
     data = request.get_json()
     result = find_optimal_theta(
-        ro_meas=data['ro_measured'],
+        m1=data['mass1'],
+        m2=data['mass2'],
+        m3=data['mass3'],
+        m4=data['mass4'],
         v_3=data['v_3'],
-        m_3=data['mass3'],
-        B=data['B'],
-        q=data['q'],
-        t_cyclotron=data['t_cyclotron'],
-        V_f=data['V_f'],
-        theta_cm=data['theta_cm'],
-        initial_theta_lab=data['initial_theta_lab']
+        T_1=data['T_1'],
+
+        z_meas=data['z_meas'],
+        ro_measured1=data['ro_measured1'],
+        ro_measured2=data['ro_measured2'],
+        B_value=data['B_value']
     )
 
     print(result)

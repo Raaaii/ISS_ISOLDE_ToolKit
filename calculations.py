@@ -166,7 +166,7 @@ def given_z_find_theta(z, m1, m2, m3, m4, T_1, v_3, B_value):
 import math
 
 def find_optimal_theta(z_meas,m_1, m_2, m_3, m_4, v_3, T_1, ro_measured1, ro_measured2, 
-                        B, tolerance=1e-6, max_iterations=100, initial_theta_lab=0):
+                        B_value, tolerance=1e-6, max_iterations=100, initial_theta_lab=0.05):
     """
     Calculates the optimal values of theta (angle) that minimize the difference between
     the calculated z_meas value and the given z_meas value for a given set of parameters.
@@ -203,7 +203,7 @@ def find_optimal_theta(z_meas,m_1, m_2, m_3, m_4, v_3, T_1, ro_measured1, ro_mea
     V_i = math.sqrt(2 * T_1 * m_1 / (m_1 + m_2))
     V_f = (m_1 + m_2) / (m_3 + m_4) * V_i
     # Calculate t_cyclotron based on B and q
-    t_cyclotron = 2 * math.pi * m_3 * v_3 / (q * B)
+    t_cyclotron = 2 * math.pi * m_3 * v_3 / (q * B_value)
     
     optimal_thetas = []
 
@@ -212,7 +212,7 @@ def find_optimal_theta(z_meas,m_1, m_2, m_3, m_4, v_3, T_1, ro_measured1, ro_mea
         theta = initial_theta_lab
         for iteration in range(max_iterations):
             # Calculate z_meas using the provided formula
-            z_meas_calculated = (V_f - v_3 * math.cos(theta)) * (1 - 1 / math.pi * math.asin(ro_meas / (m_3 * v_3 * math.sin(theta) / (q * B)))) * t_cyclotron
+            z_meas_calculated = (V_f - v_3 * math.cos(theta)) * (1 - (1 / (2*math.pi)) * math.asin((ro_meas*B_value) / (2 * v_3 * math.sin(theta)))) * t_cyclotron
 
             # Calculate the difference between calculated z_meas and given z_meas
             difference = z_meas_calculated - z_meas
@@ -227,3 +227,5 @@ def find_optimal_theta(z_meas,m_1, m_2, m_3, m_4, v_3, T_1, ro_measured1, ro_mea
         optimal_thetas.append(theta)
     
     return optimal_thetas
+
+//output 2 t5heta values. i treba fomrma za toi.

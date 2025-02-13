@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-    <!-- Toolbar -->
+  <!-- Toolbar here-->
   <div class="toolbar">
     <div class="logo">
       <img src="CERN-Logo.png" alt="CERN's Logo">
@@ -16,7 +18,7 @@
       <a href="https://home.cern/" target="_blank">CERN Official Page</a>
       <a href="mailto:official.email@cern.com">Email</a>
     </div>
-    
+
   </div>
 
   <div class="container">
@@ -38,7 +40,7 @@
     </div>
 
 
-        <!-- Masses and Parameters -->
+    <!-- Masses and Parameters -->
 
     <div class="masses" id="masses">
       <h2>Particle Masses and Parameters</h2>
@@ -71,7 +73,7 @@
     </div>
 
 
-        <!-- Z given calculate thetas -->
+    <!-- Z given calculate thetas -->
     <div class="theta-calculation">
       <h2>Calculate Theta for a given z</h2>
       <div class="z-input">
@@ -88,58 +90,59 @@
       <p><i>&theta;=</i><b id="OPtimalTheta"></b></p>
     </div>
 
-        <!-- Optimal heta form -->
+    <!-- Optimal heta form -->
 
-        <div class="optimal-theta-form" id="optimal-theta-form">
-          <h2>Calculate Optimal Theta (Lab Frame)</h2>
-          <div class="optimal-input">
-            <label for="ro_measured1"> Smaller Radius &rho;<sub>1</sub></label>
-            <input type="number" id="ro_measured1" required>
-          </div>
-          <div class="optimal-input">
-            <label for="ro_measured2"> Larger Radius &rho;<sub>2</sub></label>
-            <input type="number" id="ro_measured2" required>
-          </div>
-          <div class="optimal-input">
-            <label for="B_value"> B [T]</label>
-            <input type="number" id="B_value" required>
-          </div>
-          <div class="optimal-input">
-            <label for="z_meas"> z [m]</label>
-            <input type="number" id="z_meas" required>
-          </div>
-          <button class="calculate-button" onclick="optimal_theta_lab()">Calculate</button>
-        </div>
-        
-        <div class="optimal-theta-result" id="OptimalThetaContainer">
-          <h3>Optimal Theta (Lab Frame)</h3>
-          <p id="OPtimalTheta"></p>
-          
-        </div>
-        <div class="ThetaLabContainer">
-          <p><i>&theta;<sub>1</sub>=</i><b id="Theta1"></b></p>
-               
+    <div class="optimal-theta-form" id="optimal-theta-form">
+      <h2>Calculate Optimal Theta (Lab Frame)</h2>
+      <div class="optimal-input">
+        <label for="ro_measured1"> Smaller Radius &rho;<sub>1</sub></label>
+        <input type="number" id="ro_measured1" required>
+      </div>
+      <div class="optimal-input">
+        <label for="ro_measured2"> Larger Radius &rho;<sub>2</sub></label>
+        <input type="number" id="ro_measured2" required>
+      </div>
+      <div class="optimal-input">
+        <label for="B_value"> B [T]</label>
+        <input type="number" id="B_value" required>
+      </div>
+      <div class="optimal-input">
+        <label for="z_meas"> z [m]</label>
+        <input type="number" id="z_meas" required>
+      </div>
+      <button class="calculate-button" onclick="optimal_theta_lab()">Calculate</button>
+    </div>
 
-          <p><i>&theta;<sub>2</sub>=</i><b id="Theta2"></b></p>
-        </div>
+    <div class="optimal-theta-result" id="OptimalThetaContainer">
+      <h3>Optimal Theta (Lab Frame)</h3>
+      <p id="OPtimalTheta"></p>
+
+    </div>
+    <div class="ThetaLabContainer">
+      <p><i>&theta;<sub>1</sub>=</i><b id="Theta1"></b></p>
 
 
+      <p><i>&theta;<sub>2</sub>=</i><b id="Theta2"></b></p>
+    </div>
 
 
-  <!-- Pop-up window and overlay elements -->
-  <div id="overlay" class="overlay"></div>
-  <div id="popup" class="popup"></div>
 
-  <script src="toolbar.js"></script>
-  <script src="data.js"></script>
-  <script src="script.js"></script>
-  <script src="retrive_mass.js"></script>
-  <script src="v3.js"></script>
-  <script src="z_given_theta.js"></script>
-  <script src="optimal_theta.js"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <!-- Pop-up window and overlay elements -->
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup"></div>
+
+    <script src="toolbar.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="retrive_mass.js"></script>
+    <script src="v3.js"></script>
+    <script src="z_given_theta.js"></script>
+    <script src="optimal_theta.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
 </body>
+
 </html>
